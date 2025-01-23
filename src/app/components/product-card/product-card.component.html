@@ -1,0 +1,18 @@
+<div class="card mb-3">
+  <img
+    [src]="product.image"
+    class="card-img-top"
+    [alt]="product.name"
+    (error)="handleImageError($event)"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+    <p class="card-text">
+      <small class="text-muted">
+        Precio: {{ product.price | currency }} Categoría: {{ product.category }}
+      </small>
+    </p>
+    <button class="btn btn-danger" (click)="onDelete()">Eliminar</button>
+  </div>
+</div>

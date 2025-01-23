@@ -1,0 +1,52 @@
+<div class="card mb-3">
+    <div class="card-header py-2">
+        <h5 class="mb-0">Filtros</h5>
+    </div>
+    <div class="card-body p-2">
+        <form #filterForm="ngForm" (ngSubmit)="onFilter()">
+            <div class="row g-2">
+                <div class="col-12">
+                    <label class="form-label small mb-1">Nombre</label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="filters.name" name="name"
+                        #nameInput="ngModel">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label small mb-1">Categoría</label>
+                    <select class="form-select form-select-sm" [(ngModel)]="filters.category" name="category">
+                        <option value="">Todas</option>
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                        <option value="niño">Niño</option>
+                    </select>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label small mb-1">Precio máximo</label>
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="filters.price" name="price"
+                        #priceInput="ngModel" min="0">
+                    @if (priceInput.invalid && priceInput.touched) {
+                    <div class="text-danger small">
+                        El precio debe ser mayor o igual a 0
+                    </div>
+                    }
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label small mb-1">Estado</label>
+                    <select class="form-select form-select-sm" [(ngModel)]="filters.active" name="active">
+                        <option [ngValue]="undefined">Todos</option>
+                        <option [ngValue]="true">Activo</option>
+                        <option [ngValue]="false">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-grid mt-2">
+                <button type="submit" class="btn btn-primary btn-sm" [disabled]="filterForm.invalid">
+                    Aplicar Filtros
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="sticky-top" style="top: 20px;">
+                <app-product-filter (filter)="onFilter($event)"></app-product-filter>
+                <app-product-form></app-product-form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                @for (product of filteredProducts; track product._id) {
+                <div class="col-md-6 col-lg-4">
+                    <app-product-card [product]="product" (delete)="onDeleteProduct($event)">
+                    </app-product-card>
+                </div>
+                } @empty {
+                <div class="col-12">
+                    <div class="alert alert-info">
+                        No se encontraron productos.
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
